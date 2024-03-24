@@ -1,4 +1,6 @@
 import sys
+from importlib import resources
+
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -11,7 +13,8 @@ class Hronobloknot(Adw.Application):
 
     def do_activate(self) -> None:
         builder = Gtk.Builder()
-        builder.add_from_file('ui/hronobloknot.ui')
+        builder.add_from_string(
+            resources.read_text('hronobloknot.ui', 'hronobloknot.ui'))
 
         self.window = builder.get_object("main_window")
 
